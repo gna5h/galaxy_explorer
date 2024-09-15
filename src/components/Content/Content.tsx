@@ -9,7 +9,7 @@ export default function Content({
 }) {
   return (
     <Flex width={"100%"} padding={50}>
-      <SimpleGrid columns={isSmallScreen ? 1 : 4} spacing={10}>
+      <SimpleGrid columns={isSmallScreen ? 2 : 4} spacing={10}>
         <CharacterCard />
         <CharacterCard />
         <CharacterCard />
