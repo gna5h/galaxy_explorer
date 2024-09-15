@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchPeople());
+      dispatch(fetchPeople(1));
     }
   }, [dispatch, status]);
 
@@ -24,7 +24,6 @@ export default function Home() {
         <Search isSmallScreen={isSmallScreen} />
         <Pagination />
         <Content isSmallScreen={isSmallScreen} />
-        <Pagination />
       </VStack>
     </Box>
   );

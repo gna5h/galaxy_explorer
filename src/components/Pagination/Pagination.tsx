@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import { HStack, Text, Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/store.ts";
+import { RootState, useAppDispatch } from "../../store/store.ts";
+import { fetchPeople } from "../../store/thunks/people_thunk.ts";
 
 const ITEMS_PER_PAGE = 10;
 
 export default function Pagination() {
   const { count } = useSelector((state: RootState) => state.people);
+  const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+
+    dispatch(fetchPeople(page));
   };
 
   return (
