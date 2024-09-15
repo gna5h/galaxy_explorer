@@ -8,10 +8,11 @@ import {
   VStack,
   Box,
 } from "@chakra-ui/react";
+import { Character } from "../../ts/types/character";
 
-export default function CharacterCard() {
+export default function CharacterCard({ character }: { character: Character }) {
   return (
-    <VStack alignItems={"flex-start"}>
+    <VStack key={character.name} alignItems={"flex-start"}>
       <Card maxW="sm" bgColor={"primary.yellow"}>
         <CardBody padding={1.5}>
           <Image
@@ -24,7 +25,7 @@ export default function CharacterCard() {
       </Card>
       <Box pl={3} bgColor={"primary.black"}>
         <Heading size="sm" color={"white"}>
-          Living room Sofa
+          {character.name}
         </Heading>
       </Box>
     </VStack>
