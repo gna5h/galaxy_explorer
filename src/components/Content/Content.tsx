@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Flex, SimpleGrid } from "@chakra-ui/react";
+import { Flex, SimpleGrid, Skeleton } from "@chakra-ui/react";
 import CharacterCard from "../CharacterCard/CharacterCard.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store.ts";
