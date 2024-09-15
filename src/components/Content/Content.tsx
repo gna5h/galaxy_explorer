@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Flex, SimpleGrid, Skeleton } from "@chakra-ui/react";
+import { Flex, HStack, SimpleGrid, Skeleton } from "@chakra-ui/react";
 import CharacterCard from "../CharacterCard/CharacterCard.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store.ts";
@@ -13,11 +13,13 @@ export default function Content({
 
   return (
     <Flex width={"100%"} paddingX={50}>
-      <SimpleGrid columns={isSmallScreen ? 2 : 4} spacing={10}>
-        {people.map((character) => (
-          <CharacterCard character={character} />
-        ))}
-      </SimpleGrid>
+      <HStack width={"100%"} justifyContent={"center"}>
+        <SimpleGrid columns={isSmallScreen ? 1 : 2} spacing={10}>
+          {people.map((character) => (
+            <CharacterCard character={character} />
+          ))}
+        </SimpleGrid>
+      </HStack>
     </Flex>
   );
 }

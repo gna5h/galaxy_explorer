@@ -18,7 +18,7 @@ export default function Pagination({ currentPage, setCurrentPage }) {
   };
 
   return (
-    <HStack>
+    <HStack width={"100%"} justifyContent={"center"}>
       {Array.from({ length: totalPages }, (_, index) => index + 1).map(
         (page) => (
           <Button
