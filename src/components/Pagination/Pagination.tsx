@@ -6,10 +6,9 @@ import { fetchPeople } from "../../store/thunks/people_thunk.ts";
 
 const ITEMS_PER_PAGE = 10;
 
-export default function Pagination() {
+export default function Pagination({ currentPage, setCurrentPage }) {
   const { count } = useSelector((state: RootState) => state.people);
   const dispatch = useAppDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
 
   const handlePageChange = (page: number) => {

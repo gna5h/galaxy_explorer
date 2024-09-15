@@ -1,5 +1,5 @@
 import { Box, useBreakpointValue, VStack } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store/store.ts";
 import { fetchPeople } from "../../store/thunks/people_thunk.ts";
@@ -11,6 +11,7 @@ export default function Home() {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
   const dispatch = useAppDispatch();
   const { status } = useSelector((state: RootState) => state.people);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (status === "idle") {
@@ -22,8 +23,9 @@ export default function Home() {
     <Box bg={"primary.black"} minHeight="100vh">
       <VStack gap={10} paddingBottom={10}>
         <Search isSmallScreen={isSmallScreen} />
-        <Pagination />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
         <Content isSmallScreen={isSmallScreen} />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </VStack>
     </Box>
   );
