@@ -11,9 +11,11 @@ import {
 import { Search2Icon, HamburgerIcon } from "@chakra-ui/icons";
 import React from "react";
 
-export default function Search() {
-  const isSmallScreen = useBreakpointValue({ base: true, md: false });
-
+export default function Search({
+  isSmallScreen,
+}: {
+  isSmallScreen: boolean | undefined;
+}) {
   return (
     <Stack
       direction="row"
