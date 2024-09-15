@@ -5,6 +5,7 @@ import { Character } from "../../ts/types/character.ts";
 
 const initialState: PeopleState = {
   people: [] as Character[],
+  count: 0,
   status: "idle",
   error: null,
 };
@@ -18,14 +19,17 @@ const peopleSlice = createSlice({
       .addCase(fetchPeople.pending, (state) => {
         state.status = "loading";
         state.error = null;
+        state.count = 0;
       })
       .addCase(fetchPeople.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.people = action.payload;
+        state.people = action.payload.results;
+        state.count = action.payload.count;
       })
       .addCase(fetchPeople.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message ?? "Something went wrong";
+        state.count = 0;
       });
   },
 });
