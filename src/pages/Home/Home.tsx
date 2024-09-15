@@ -23,8 +23,11 @@ export default function Home() {
     <Box bg={"primary.black"} minHeight="100vh">
       <VStack gap={10} paddingBottom={10}>
         <Search isSmallScreen={isSmallScreen} />
+
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+
         <Content isSmallScreen={isSmallScreen} />
+
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </VStack>
     </Box>
