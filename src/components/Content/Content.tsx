@@ -11,12 +11,8 @@ export default function Content({
 }) {
   const { people } = useSelector((state: RootState) => state.people);
 
-  useEffect(() => {
-    console.log("PEOPLE: ", people.length);
-  }, []);
-
   return (
-    <Flex width={"100%"} padding={50}>
+    <Flex width={"100%"} paddingX={50}>
       <SimpleGrid columns={isSmallScreen ? 2 : 4} spacing={10}>
         {people.map((character) => (
           <CharacterCard character={character} />
