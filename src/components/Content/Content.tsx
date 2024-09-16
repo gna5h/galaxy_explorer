@@ -11,6 +11,8 @@ export default function Content({
 }) {
   const { people } = useSelector((state: RootState) => state.people);
 
+  console.log("PEOPLE: ", people);
+
   return (
     <Flex width={"100%"} paddingX={50}>
       <HStack width={"100%"} justifyContent={"center"}>
