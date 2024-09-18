@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPeople } from "../thunks/people_thunk.ts";
+import { fetchPeople, searchPeople } from "../thunks/people_thunk.ts";
 import { PeopleState } from "../../ts/types/people.ts";
 import { Character } from "../../ts/types/character.ts";
 
@@ -30,6 +30,19 @@ const peopleSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message ?? "Something went wrong";
         state.count = 0;
+      })
+      .addCase(searchPeople.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(searchPeople.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.people = action.payload.results;
+        state.count = action.payload.count;
+      })
+      .addCase(searchPeople.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message ?? "Something went wrong";
       });
   },
 });
