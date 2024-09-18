@@ -7,13 +7,16 @@ import {
   VStack,
   Box,
   Skeleton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Character } from "../../ts/types/character";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store.ts";
+import CharacterModal from "../CharacterModal/CharacterModal.tsx";
 
 export default function CharacterCard({ character }: { character: Character }) {
   const { status } = useSelector((state: RootState) => state.people);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Skeleton
@@ -21,7 +24,7 @@ export default function CharacterCard({ character }: { character: Character }) {
       borderRadius="lg"
       fadeDuration={1}
     >
-      <VStack key={character.name} alignItems={"flex-start"}>
+      <VStack onClick={onOpen} key={character.name} alignItems={"flex-start"}>
         <Card maxW="sm" bgColor={"primary.yellow"}>
           <CardBody padding={1.5}>
             <Image
@@ -37,6 +40,12 @@ export default function CharacterCard({ character }: { character: Character }) {
             {character.name}
           </Heading>
         </Box>
+
+        <CharacterModal
+          isOpen={isOpen}
+          onClose={onClose}
+          character={character}
+        />
       </VStack>
     </Skeleton>
   );
