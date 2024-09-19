@@ -23,7 +23,6 @@ export default function Search({
 }) {
   const dispatch = useAppDispatch();
   const [keyword, setKeyword] = useState("");
-  const [isSearchClicked, setIsSearchClicked] = useState(false);
   const { isOpen, onToggle } = useDisclosure();
 
   const handleSearch = () => {
