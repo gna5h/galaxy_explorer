@@ -9,9 +9,9 @@ import {
   HStack,
   Collapse,
   useDisclosure,
-  Divider,
 } from "@chakra-ui/react";
-import { Search2Icon, HamburgerIcon } from "@chakra-ui/icons";
+import { FaSearch } from "react-icons/fa";
+import { FaFilter } from "react-icons/fa";
 import React, { useState } from "react";
 import { useAppDispatch } from "../../store/store.ts";
 import { searchPeople } from "../../store/thunks/people_thunk.ts";
@@ -50,25 +50,20 @@ export default function Search({
           direction="row"
           justifyContent={"space-between"}
           alignItems={"center"}
-          gap={isSmallScreen ? 5 : 10}
+          gap={5}
         >
           {isSmallScreen ? (
             <IconButton
               aria-label="Search"
-              icon={
-                <Search2Icon
-                  color="primary.black"
-                  _hover={{ color: "white" }}
-                />
-              }
+              icon={<FaSearch color="primary.black" />}
               variant="ghost"
-              _hover={{ backgroundColor: "transparent" }}
+              _hover={{ backgroundColor: "transparent", color: "white" }}
               onClick={onToggle}
             />
           ) : (
             <InputGroup>
               <InputLeftElement pointerEvents="none">
-                <Search2Icon color="primary.black" />
+                <FaSearch color="primary.black" />
               </InputLeftElement>
               <Input
                 placeholder="Quick Search"
@@ -76,6 +71,7 @@ export default function Search({
                 focusBorderColor="white"
                 _hover={{ borderColor: "white" }}
                 borderRadius={100}
+                borderWidth={2}
                 borderColor={"primary.black"}
                 size="md"
                 onChange={(event) => setKeyword(event.target.value)}
@@ -89,15 +85,9 @@ export default function Search({
           )}
           <IconButton
             aria-label="Filter"
-            icon={
-              <HamburgerIcon
-                color="primary.black"
-                boxSize={6}
-                _hover={{ color: "white" }}
-              />
-            }
+            icon={<FaFilter color="primary.black" />}
             variant="ghost"
-            _hover={{ backgroundColor: "transparent" }}
+            _hover={{ backgroundColor: "transparent", color: "white" }}
           />
         </Stack>
       </HStack>
