@@ -8,6 +8,11 @@ import {
   VStack,
   HStack,
   Collapse,
+  Menu,
+  MenuButton,
+  Button,
+  MenuList,
+  MenuItem,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
@@ -82,12 +87,19 @@ export default function Search({
               />
             </InputGroup>
           )}
-          <IconButton
-            aria-label="Filter"
-            icon={<FaFilter color="primary.black" />}
-            variant="ghost"
-            _hover={{ backgroundColor: "transparent", color: "white" }}
-          />
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<FaFilter color="primary.black" />}
+              bgColor={"transparent"}
+              _hover={{ backgroundColor: "transparent", color: "white" }}
+              variant="ghost"
+            />
+            <MenuList>
+              <MenuItem>Gender</MenuItem>
+              <MenuItem>Homeworld/Name</MenuItem>
+            </MenuList>
+          </Menu>
         </Stack>
       </HStack>
       {isSmallScreen && (
