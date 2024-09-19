@@ -1,19 +1,12 @@
 import React from "react";
 import {
-  Heading,
-  Input,
-  InputGroup,
-  VStack,
-  HStack,
   Menu,
   MenuButton,
-  Button,
   MenuList,
   MenuOptionGroup,
   MenuItemOption,
   MenuDivider,
   IconButton,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { FaFilter } from "react-icons/fa";
 

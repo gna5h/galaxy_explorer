@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { HStack, Text, Button } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store/store.ts";

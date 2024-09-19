@@ -6,6 +6,7 @@ import { fetchPeople } from "../../store/thunks/people_thunk.ts";
 import Search from "../../components/Search/Search.tsx";
 import Content from "../../components/Content/Content.tsx";
 import Pagination from "../../components/Pagination/Pagination.tsx";
+import { FallingLines } from "react-loader-spinner";
 
 export default function Home() {
   const isSmallScreen = useBreakpointValue({ base: true, md: false });
@@ -26,6 +27,9 @@ export default function Home() {
 
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
+        {status === "loading" && (
+          <FallingLines color="#ffe81f" width="100" visible={true} />
+        )}
         <Content isSmallScreen={isSmallScreen} />
 
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
