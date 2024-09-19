@@ -1,116 +1,58 @@
+import React, { useState } from "react";
 import {
-  Stack,
   Heading,
   Input,
-  IconButton,
   InputGroup,
-  InputLeftElement,
   VStack,
   HStack,
-  Collapse,
-  useDisclosure,
-  Divider,
+  Button,
 } from "@chakra-ui/react";
-import { Search2Icon, HamburgerIcon } from "@chakra-ui/icons";
-import React, { useState } from "react";
 import { useAppDispatch } from "../../store/store.ts";
 import { searchPeople } from "../../store/thunks/people_thunk.ts";
+import Filter from "../Filter/Filter.tsx";
 
-export default function Search({
-  isSmallScreen,
-}: {
-  isSmallScreen: boolean | undefined;
-}) {
+export default function Search() {
   const dispatch = useAppDispatch();
   const [keyword, setKeyword] = useState("");
-  const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const { isOpen, onToggle } = useDisclosure();
 
   const handleSearch = () => {
     dispatch(searchPeople(keyword));
   };
 
   return (
-    <VStack
-      alignItems={"center"}
-      bg={"primary.yellow"}
-      width={"100%"}
-      paddingX={isSmallScreen ? 0 : 50}
-      paddingY={isSmallScreen ? 5 : 0}
-    >
+    <VStack alignItems={"center"} bg={"#1d1d1d"} width={"100%"}>
       <HStack
-        height={isSmallScreen ? "5vh" : "10vh"}
+        height={"5vh"}
         width={"100%"}
         alignItems={"center"}
         justifyContent={"space-between"}
-        padding={5}
+        padding={8}
       >
-        <Heading size={"lg"}>Galaxy Explorer</Heading>
-        <Stack
-          direction="row"
-          justifyContent={"space-between"}
-          alignItems={"center"}
-          gap={isSmallScreen ? 5 : 10}
-        >
-          {isSmallScreen ? (
-            <IconButton
-              aria-label="Search"
-              icon={
-                <Search2Icon
-                  color="primary.black"
-                  _hover={{ color: "white" }}
-                />
-              }
-              variant="ghost"
-              _hover={{ backgroundColor: "transparent" }}
-              onClick={onToggle}
-            />
-          ) : (
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Search2Icon color="primary.black" />
-              </InputLeftElement>
-              <Input
-                placeholder="Quick Search"
-                _placeholder={{ color: "primary.black" }}
-                focusBorderColor="white"
-                _hover={{ borderColor: "white" }}
-                borderRadius={100}
-                borderColor={"primary.black"}
-                size="md"
-                onChange={(event) => setKeyword(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                    handleSearch();
-                  }
-                }}
-              />
-            </InputGroup>
-          )}
-          <IconButton
-            aria-label="Filter"
-            icon={
-              <HamburgerIcon
-                color="primary.black"
-                boxSize={6}
-                _hover={{ color: "white" }}
-              />
-            }
-            variant="ghost"
-            _hover={{ backgroundColor: "transparent" }}
-          />
-        </Stack>
+        <Heading color={"primary.yellow"} size={"lg"} pl={10}>
+          Galaxy Explorer
+        </Heading>
       </HStack>
-      {isSmallScreen && (
-        <Collapse in={isOpen} animateOpacity>
-          <HStack height={"5vh"} width={"90vw"} margin={1}>
+
+      <VStack
+        width={"100%"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        height={"15vh"}
+        bgColor={"primary.black"}
+        borderTopColor={"primary.lightgray"}
+        borderTopWidth={1}
+      >
+        <HStack>
+          <InputGroup width={"50vw"}>
             <Input
-              placeholder="Quick Search"
-              _placeholder={{ color: "primary.black" }}
+              placeholder="Search by name"
+              _placeholder={{ color: "primary.lightgray" }}
               focusBorderColor="white"
               _hover={{ borderColor: "white" }}
-              borderRadius={100}
-              borderColor={"primary.black"}
+              borderRadius={8}
+              borderWidth={2}
+              borderColor={"primary.lightgray"}
+              color={"primary.lightgray"}
               size="md"
               onChange={(event) => setKeyword(event.target.value)}
               onKeyDown={(event) => {
@@ -119,9 +61,19 @@ export default function Search({
                 }
               }}
             />
-          </HStack>
-        </Collapse>
-      )}
+          </InputGroup>
+          <Button
+            _hover={{ opacity: 10, bgColor: "primary.darkishblue" }}
+            onClick={handleSearch}
+            bgColor={"primary.lightblue"}
+            color={"white"}
+            borderRadius={8}
+          >
+            Search
+          </Button>
+          <Filter />
+        </HStack>
+      </VStack>
     </VStack>
   );
 }

@@ -20,9 +20,9 @@ export default function Home() {
   }, [dispatch, status]);
 
   return (
-    <Box bg={"primary.black"} minHeight="100vh">
+    <Box bg={"primary.gray"} minHeight="100vh">
       <VStack gap={10} paddingBottom={10}>
-        <Search isSmallScreen={isSmallScreen} />
+        <Search />
 
         <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
